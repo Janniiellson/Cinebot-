@@ -1,0 +1,308 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414; /* Cor de fundo escura (Netflix-like) */
+    color: #e5e5e5; /* Cor do texto claro */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Para flexbox do layout geral, incluindo a sidebar */
+    min-height: 100vh; /* Garante que o body ocupa a altura total */
+    overflow-x: hidden; /* Evita barra de rolagem horizontal devido à sidebar */
+}
+
+/* Estilo do botão de menu (hambúrguer)*/
+.menu-button {
+    position: fixed; /* Fixa na tela */
+    top: 20px;
+    left: 20px;
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1001; /* Garante que fique acima de outros elementos */
+}
+
+.menu-button .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #e5e5e5;
+    border-radius: 2px;
+    transition: all 0.3s ease; /* Para animação futura */
+}
+
+/* Estilo da Sidebar*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -220px; /* Esconde a sidebar fora da tela por padrão */
+    width: 250px;
+    height: 100%;
+    background-color: #222; /* Cor de fundo da sidebar */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease; /* Animação ao abrir/fechar */
+    z-index: 1000; /* Abaixo do botão de menu, mas acima do chat */
+}
+
+.sidebar.active {
+    left: 0; /* Mostra a sidebar */
+}
+
+.sidebar h3 {
+    color: #e50914; /* Vermelho do Netflix */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #e5e5e5;
+    font-size: 1.1em;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #333;
+    color: #e50914; /* Destaca ao passar o mouse */
+}
+
+
+/* Estilo do container principal do chat (que vai se mover)*/
+.chat-container {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #222;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 40px); /* Altura mínima para o container */
+    transition: margin-left 0.3s ease; /* Para quando a sidebar empurrar o chat */
+}
+
+/* Quando a sidebar está ativa, empurra o chat-container*/
+body.sidebar-active .chat-container {
+    margin-left: 550px; /* Largura da sidebar + margem */
+}
+
+
+h1 {
+    color: #e50914; /* Vermelho Netflix */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #333;
+    max-height: calc(100vh - 250px); /* Ajuste conforme necessário */
+    display: flex; /* Para empilhar mensagens */
+    flex-direction: column;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background-color: #007bff; /* Azul para usuário */
+    color: white;
+    align-self: flex-end; /* Alinha à direita */
+}
+
+.message.bot {
+    background-color: #6c757d; /* Cinza para bot */
+    color: white;
+    align-self: flex-start; /* Alinha à esquerda */
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+}
+
+#userInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #e5e5e5;
+    font-size: 1em;
+}
+
+#userInput::placeholder {
+    color: #999;
+}
+
+#sendButton {
+    padding: 10px 20px;
+    background-color: #e50914; /* Vermelho Netflix */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+#sendButton:hover {
+    background-color: #ff0000; /* Vermelho mais vibrante no hover */
+}
+
+.disclaimer {
+    font-size: 0.8em;
+    color: #999;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* ... outros estilos ... */
+
+#commands-section h3 {
+   text-align: center; /* Centralizar o título dos comandos */
+   margin-bottom: 15px;
+}
+
+.commands-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cria a grade responsiva */
+   gap: 15px; /* Espaçamento entre os itens da grade */
+   margin-bottom: 15px;
+}
+
+.command-item {
+   background-color: #333; /* Fundo mais escuro para os itens da grade */
+   padding: 15px;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   text-align: center; /* Centralizar o conteúdo dentro do item */
+}
+
+.command-item:hover {
+   background-color: #444;
+}
+
+.command-title {
+   font-weight: bold;
+   color: #e50914;
+   display: block; /* Garante que o título ocupe a largura total */
+   margin-bottom: 5px;
+}
+
+.command-details {
+   margin-top: 10px;
+   padding: 10px;
+   border: 1px solid #555;
+   border-radius: 5px;
+   font-size: 0.9em;
+   color: #ccc;
+   text-align: left; /* Alinhar o texto dos detalhes à esquerda */
+}
+
+.command-details p {
+   margin: 5px 0;
+}
+
+.command-details .example {
+   font-style: italic;
+   color: #aaa;
+}
+
+.command-details code {
+   background-color: #444;
+   padding: 3px 7px;
+   border-radius: 3px;
+   font-family: 'Courier New', Courier, monospace;
+}
+
+
+/* Estilos para os comandos colapsáveis*/
+.command-item {
+    background-color: #444; /* Cor de fundo para cada item de comando */
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.command-item:hover {
+    background-color: #555;
+}
+
+.command-title {
+    font-weight: bold;
+    color: #e50914; /* Vermelho Netflix para o título do comando */
+}
+
+.command-details {
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 2px solid #e50914; /* Linha vermelha para detalhes */
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.command-details p {
+    margin: 3px 0;
+}
+
+.command-details .example {
+    font-style: italic;
+    color: #aaa;
+}
+
+.command-details code {
+    background-color: #333;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Novo estilo para o disclaimer dentro da mensagem do bot */
+.disclaimer-bot {
+    font-size: 0.8em;
+    color: #999;
+    text-align: left; /* Alinha à esquerda dentro da caixa de mensagem do bot */
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #555; /* Linha para separar do resto da mensagem */
+}
+
+/* Ajuste o estilo geral do h3 dos comandos para o novo contexto */
+.chat-messages h3 {
+    color: #e50914; /* Vermelho do Netflix */
+    text-align: left; /* Alinha à esquerda dentro da caixa de mensagem do bot */
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

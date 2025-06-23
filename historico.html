@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Conversas - CineBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div class="menu-button" id="menuButton">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h3>Histórico de Conversas</h3>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Voltar ao Chat</a></li>
+            <li><a href="#" id="newChatButton">Nova Conversa (no chat principal)</a></li>
+            <hr style="border-color: #444; margin: 15px 0;">
+            <h4>Suas Conversas:</h4>
+            {% if conversations %}
+                {% for conv in conversations %}
+                    <li class="conversation-item">
+                        <a href="#" data-session-id="{{ conv.session_id }}">{{ conv.title }} ({{ conv.start_time }})</a>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>Nenhuma conversa encontrada.</li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div class="chat-container history-container"> <h1>Histórico de Conversas 📚</h1>
+        <div class="history-main-content">
+            <h2 class="conversation-title" id="currentConversationTitle">Selecione uma conversa na barra lateral</h2>
+            <div class="chat-messages conversation-display" id="conversationDisplay">
+                <div class="message bot">Clique em uma conversa na barra lateral para visualizá-la.</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='historico.js') }}"></script>
+</body>
+</html>

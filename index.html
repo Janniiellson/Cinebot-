@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>CineBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="menu-button" id="menuButton">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h3>Menu</h3>
+        <ul>
+            <li><a href="{{ url_for('exibir_historico') }}">Histórico de Conversas</a></li>
+            <li><a href="#" id="newChatButton">Nova Conversa</a></li>
+            <li><a href="#" id="showCommandsButton">Comandos</a></li> </ul>
+    </div>
+
+    <div class="chat-container">
+        <h1>CineBot 🍿🎬</h1>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                Olá, cinéfilo! Eu sou o CineBot. 😊
+                <p>Se estiver com dúvidas, digite "ajuda".</p>
+                <div id="commands-section">
+   <h3>🎬 Comandos do CineBot:</h3>
+   <div class="commands-grid">
+       <div class="command-item" onclick="toggleCommand('comando-1')">
+           <span class="command-title">1. Buscar filme</span>
+           <div id="comando-1" class="command-details hidden">
+               <p>Pergunte pelo nome do filme!</p>
+               <p class="example">Exemplo: <code>interestelar</code>, <code>matrix</code></p>
+           </div>
+       </div>
+       <div class="command-item" onclick="toggleCommand('comando-2')">
+           <span class="command-title">2. Top filmes</span>
+           <div id="comando-2" class="command-details hidden">
+               <p>Veja os filmes em cartaz no cinema agora.</p>
+               <p class="example">Exemplo: <code>top filmes</code></p>
+           </div>
+       </div>
+       <div class="command-item" onclick="toggleCommand('comando-3')">
+           <span class="command-title">3. Filmes por gênero</span>
+           <div id="comando-3" class="command-details hidden">
+               <p>Pergunte sobre filmes de um gênero específico.</p>
+               <p class="example">Exemplo: <code>gênero comédia</code>, <code>gênero ação</code></p>
+           </div>
+       </div>
+       <div class="command-item" onclick="toggleCommand('comando-4')">
+           <span class="command-title">4. Filmes por ator/atriz</span>
+           <div id="comando-4" class="command-details hidden">
+               <p>Veja filmes com um ator ou atriz específico.</p>
+               <p class="example">Exemplo: <code>filmes com tom hanks</code>, <code>filmes com natalie portman</code></p>
+           </div>
+       </div>
+       </div>
+</div>
+                <p class="disclaimer-bot">
+                    **Dica:** Seja criativo com suas perguntas! O CineBot adora conversar sobre cinema! 🍿🎬
+                </p>
+            </div>
+            </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Pergunte algo...">
+            <button id="sendButton">Enviar</button>
+        </div>
+        <p class="disclaimer">
+            **Dica:** Você também pode digitar "ajuda" para ver os comandos!
+        </p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
